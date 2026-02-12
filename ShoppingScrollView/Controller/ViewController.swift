@@ -14,14 +14,20 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var collcetionViewStories: UICollectionView!
 
-    
     @IBOutlet weak var collcetionRecentHeight: NSLayoutConstraint!
 
+    @IBOutlet weak var collectionViewStoriesHeight: NSLayoutConstraint!
+
     //Arry of recenlty viewed
-    let recenlyImages = ["Item1", "Item2", "Item3", "Item4", "Item5","Model1","Item2","Item4","Item5","Model1"]
+    let recenlyImages = [
+        "Item1", "Item2", "Item3", "Item4", "Item5", "Model1", "Item2", "Item4",
+        "Item5", "Model1",
+    ]
 
     //Array of stories
-    let storiesImages = ["Model1", "Model1", "Model1", "Model1", "Model1"]
+    let storiesImages = [
+        "Model1", "Model2", "Model3", "Model4", "Model1", "Model2", "Model3",
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,19 +36,19 @@ class ViewController: UIViewController {
         recentlyViewed()
 
     }
-    
+
     //MARK: Set custom heights
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        collcetionRecentHeight.constant = view.frame.width * 0.2
-            
+        collcetionRecentHeight.constant = view.frame.width * 0.15
+        collectionViewStoriesHeight.constant = view.frame.width * 0.40
     }
     //MARK: Method for recently viewed
     func recentlyViewed() {
-      
+
         collectionViewRecenly.delegate = self
         collectionViewRecenly.dataSource = self
-        
+
         collcetionViewStories.delegate = self
         collcetionViewStories.dataSource = self
     }
@@ -64,25 +70,24 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        print("Sizing called")
+       
 
-        let height: CGFloat = collectionView.frame.height
+        let height = collectionView.frame.height
 
-        var imageName: String
-
+        // Recent → Square (for circle image)
         if collectionView == collectionViewRecenly {
-            imageName = recenlyImages[indexPath.row]
-        } else {
-            imageName = storiesImages[indexPath.row]
+            return CGSize(width: height, height: height)
         }
 
+        // Stories → Dynamic width based on image ratio
+        let imageName = storiesImages[indexPath.row]
         guard let image = UIImage(named: imageName) else {
             return CGSize(width: height, height: height)
         }
 
         let ratio = image.size.width / image.size.height
         let width = height * ratio
-        
+
         return CGSize(width: width, height: height)
     }
 
