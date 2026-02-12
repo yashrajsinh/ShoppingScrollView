@@ -9,4 +9,6 @@ import UIKit
 
 class RecentlyViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var recentlyViewItems: UIImageView!
+    
 }
