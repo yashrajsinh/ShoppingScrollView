@@ -14,8 +14,11 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var collcetionViewStories: UICollectionView!
 
+    
+    @IBOutlet weak var collcetionRecentHeight: NSLayoutConstraint!
+
     //Arry of recenlty viewed
-    let recenlyImages = ["Item1", "Item2", "Item3", "Item4", "Item5"]
+    let recenlyImages = ["Item1", "Item2", "Item3", "Item4", "Item5","Model1","Item2","Item4","Item5","Model1"]
 
     //Array of stories
     let storiesImages = ["Model1", "Model1", "Model1", "Model1", "Model1"]
@@ -26,6 +29,13 @@ class ViewController: UIViewController {
         addPadding()
         recentlyViewed()
 
+    }
+    
+    //MARK: Set custom heights
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collcetionRecentHeight.constant = view.frame.width * 0.2
+            
     }
     //MARK: Method for recently viewed
     func recentlyViewed() {
