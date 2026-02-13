@@ -9,7 +9,6 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var annView: UIStackView!
     @IBOutlet weak var collectionViewRecenly: UICollectionView!
 
     @IBOutlet weak var collcetionViewStories: UICollectionView!
@@ -19,6 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var collectionViewStoriesHeight: NSLayoutConstraint!
     
     @IBOutlet weak var annouceView: UIView!
+    
     
    
     
