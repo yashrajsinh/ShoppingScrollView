@@ -17,7 +17,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var collcetionRecentHeight: NSLayoutConstraint!
 
     @IBOutlet weak var collectionViewStoriesHeight: NSLayoutConstraint!
-
+    
+    @IBOutlet weak var annouceView: UIView!
+    
+   
+    
     //Arry of recenlty viewed
     let recenlyImages = [
         "Item1", "Item2", "Item3", "Item4", "Item5", "Model1", "Item2", "Item4",
@@ -55,8 +59,8 @@ class ViewController: UIViewController {
 
     //MARK: Add padding to view
     func addPadding() {
-        annView.layer.cornerRadius = 15
-        annView.layer.masksToBounds = true
+        annouceView.layer.cornerRadius = 10
+        annouceView.layer.masksToBounds = true
     }
 
 }

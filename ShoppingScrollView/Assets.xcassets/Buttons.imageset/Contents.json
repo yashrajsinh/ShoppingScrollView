@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Type=regular, State=able, Selected=true, Radius=rounded@1x.jpg",
+      "filename" : "Buttons@1x.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Type=regular, State=able, Selected=true, Radius=rounded@2x.jpg",
+      "filename" : "Buttons@2x.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Type=regular, State=able, Selected=true, Radius=rounded@3x.jpg",
+      "filename" : "Buttons@3x.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }
