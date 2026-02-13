@@ -38,19 +38,19 @@ class ViewController: UIViewController {
     //Array of newItems
     let newProducts: [NewItems] = [
         NewItems(
-            imageName: "Model1",
+            imageName: "Glass1",
             title: "Lorem ipsum dolor sit amet consectetur.",
-            price: "$17.00"
+            price: "$17,00"
         ),
         NewItems(
-            imageName: "Model2",
+            imageName: "Glass1",
             title: "Lorem ipsum dolor sit amet consectetur.",
-            price: "$32.00"
+            price: "$32,00"
         ),
         NewItems(
-            imageName: "Model3",
+            imageName: "Glass1",
             title: "Lorem ipsum dolor sit amet consectetur.",
-            price: "$21.00"
+            price: "$21,00"
         ),
     ]
 
@@ -67,7 +67,7 @@ class ViewController: UIViewController {
         super.viewDidLayoutSubviews()
         collcetionRecentHeight.constant = view.frame.width * 0.15
         collectionViewStoriesHeight.constant = view.frame.width * 0.45
-        collcetionViewNewItemsHeight.constant = view.frame.width * 0.35
+        collcetionViewNewItemsHeight.constant = view.frame.width * 0.40
     }
     //MARK: Method for recently viewed
     func recentlyViewed() {
@@ -112,6 +112,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
         guard let image = UIImage(named: imageName) else {
             return CGSize(width: height, height: height)
         }
+        
+    
 
         let ratio = image.size.width / image.size.height
         let width = height * ratio
@@ -177,7 +179,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
                 named: newProducts[indexPath.row].imageName
             )
             //cell.txtTitle.text = newProducts[indexPath.row].title
-            //cell.txtPrice.text = newProducts[indexPath.row].price
+            cell.txtPrice.text = newProducts[indexPath.row].price
             return cell
         }
         return cell
