@@ -66,8 +66,8 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collcetionRecentHeight.constant = view.frame.width * 0.15
-        collectionViewStoriesHeight.constant = view.frame.width * 0.40
-        collcetionViewNewItemsHeight.constant = view.frame.width * 0.30
+        collectionViewStoriesHeight.constant = view.frame.width * 0.45
+        collcetionViewNewItemsHeight.constant = view.frame.width * 0.35
     }
     //MARK: Method for recently viewed
     func recentlyViewed() {
@@ -176,8 +176,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
             cell.imgNewItems.image = UIImage(
                 named: newProducts[indexPath.row].imageName
             )
-            cell.txtTitle.text = newProducts[indexPath.row].title
-            cell.txtPrice.text = newProducts[indexPath.row].price
+            //cell.txtTitle.text = newProducts[indexPath.row].title
+            //cell.txtPrice.text = newProducts[indexPath.row].price
             return cell
         }
         return cell
