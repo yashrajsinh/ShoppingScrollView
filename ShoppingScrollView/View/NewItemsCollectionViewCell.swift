@@ -16,11 +16,11 @@ class NewItemsCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         imgNewItems.clipsToBounds = true
         // White border
-        imgNewItems.layer.borderWidth = 3
+        imgNewItems.layer.borderWidth = 2
         imgNewItems.layer.borderColor = UIColor.white.cgColor
 
         // Shadow OUTSIDE the circle
-        imgNewItems.layer.shadowColor = UIColor.white.cgColor
+        imgNewItems.layer.shadowColor = UIColor.black.cgColor
         imgNewItems.layer.shadowOpacity = 0.3
         imgNewItems.layer.shadowRadius = 4.0
         imgNewItems.layer.shadowOffset = CGSize(width: 1, height: 1)
