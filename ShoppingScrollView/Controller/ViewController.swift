@@ -16,12 +16,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var collcetionRecentHeight: NSLayoutConstraint!
 
     @IBOutlet weak var collectionViewStoriesHeight: NSLayoutConstraint!
-    
+
     @IBOutlet weak var annouceView: UIView!
+
+    @IBOutlet weak var collectionViewNewItems: UICollectionView!
     
+    @IBOutlet weak var collcetionViewNewItemsHeight: NSLayoutConstraint!
     
-   
-    
+
     //Arry of recenlty viewed
     let recenlyImages = [
         "Item1", "Item2", "Item3", "Item4", "Item5", "Model1", "Item2", "Item4",
@@ -31,6 +33,30 @@ class ViewController: UIViewController {
     //Array of stories
     let storiesImages = [
         "Model1", "Model2", "Model3", "Model4", "Model1", "Model2", "Model3",
+    ]
+
+    //Array of newItems
+    let newProducts: [NewItems] = [
+        NewItems(
+            imageName: "Glass1",
+            title: "Lorem ipsum dolor sit amet consectetur.",
+            price: "$17,00"
+        ),
+        NewItems(
+            imageName: "Glass2",
+            title: "Lorem ipsum dolor sit amet consectetur.",
+            price: "$32,00"
+        ),
+        NewItems(
+            imageName: "Glass1",
+            title: "Lorem ipsum dolor sit amet consectetur.",
+            price: "$21,00"
+        ),
+        NewItems(
+            imageName: "Glass2",
+            title: "Lorem ipsum dolor sit amet consectetur.",
+            price: "$21,00"
+        ),
     ]
 
     override func viewDidLoad() {
@@ -45,7 +71,8 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collcetionRecentHeight.constant = view.frame.width * 0.15
-        collectionViewStoriesHeight.constant = view.frame.width * 0.40
+        collectionViewStoriesHeight.constant = view.frame.width * 0.50
+        collcetionViewNewItemsHeight.constant = view.frame.width * 0.45
     }
     //MARK: Method for recently viewed
     func recentlyViewed() {
@@ -55,6 +82,9 @@ class ViewController: UIViewController {
 
         collcetionViewStories.delegate = self
         collcetionViewStories.dataSource = self
+
+        collectionViewNewItems.delegate = self
+        collectionViewNewItems.dataSource = self
     }
 
     //MARK: Add padding to view
@@ -74,7 +104,6 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-       
 
         let height = collectionView.frame.height
 
@@ -88,6 +117,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
         guard let image = UIImage(named: imageName) else {
             return CGSize(width: height, height: height)
         }
+        
+    
 
         let ratio = image.size.width / image.size.height
         let width = height * ratio
@@ -99,10 +130,18 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
+
+        //Collcetion Recently
         if collectionView == collectionViewRecenly {
             return recenlyImages.count
-        } else if collectionView == collcetionViewStories {
+        }
+        //Collection Stories
+        else if collectionView == collcetionViewStories {
             return storiesImages.count
+        }
+        //Collection New Items
+        else if collectionView == collectionViewNewItems {
+            return newProducts.count
         }
         return 0
     }
@@ -112,6 +151,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         let cell = UICollectionViewCell()
+        //Collcetion Recently
         if collectionView == collectionViewRecenly {
             let cell =
                 collectionView.dequeueReusableCell(
@@ -122,13 +162,29 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
                 named: recenlyImages[indexPath.row]
             )
             return cell
-        } else if collectionView == collcetionViewStories {
+        }
+        //Collection Stories
+        else if collectionView == collcetionViewStories {
             let cell =
                 collectionView.dequeueReusableCell(
                     withReuseIdentifier: "StoriesCell",
                     for: indexPath
                 ) as! StoriesViewCell
             cell.imgStories.image = UIImage(named: storiesImages[indexPath.row])
+            return cell
+        }
+        //Collection New Items
+        else if collectionView == collectionViewNewItems {
+            let cell =
+                collectionView.dequeueReusableCell(
+                    withReuseIdentifier: "NewItemCell",
+                    for: indexPath
+                ) as! NewItemsCollectionViewCell
+            cell.imgNewItems.image = UIImage(
+                named: newProducts[indexPath.row].imageName
+            )
+            cell.txtTitle.text = newProducts[indexPath.row].title
+            cell.txtPrice.text = newProducts[indexPath.row].price
             return cell
         }
         return cell
