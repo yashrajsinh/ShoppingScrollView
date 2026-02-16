@@ -34,6 +34,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var collectionViewSale: UICollectionView!
     @IBOutlet weak var collectionViewSaleHeight: NSLayoutConstraint!
 
+    //Top Products View 
+    
     //Arry of recenlty viewed
     let recenlyImages = [
         "Item1", "Item2", "Item3", "Item4", "Item5", "Model1", "Item2", "Item4",
@@ -133,7 +135,10 @@ class ViewController: UIViewController {
         collcetionViewNewItemsHeight.constant = view.frame.width * 0.45
         collectionViewPopularHeight.constant = view.frame.width * 0.35
         collectionViewCategoriesHeight.constant = view.frame.width * 0.99
-        collectionViewSaleHeight.constant = view.frame.width * 0.45
+
+        // Sale: 3 columns, 2 rows with spacing
+        let saleItemWidth = (view.frame.width - 20) / 3
+        collectionViewSaleHeight.constant = (saleItemWidth * 2) + 5  // 2 rows + spacing
     }
     //MARK: Method for recently viewed
     func recentlyViewed() {
@@ -217,8 +222,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
 
         // Sale
         if collectionView == collectionViewSale {
-            let width = collectionView.frame.width / 3 - 10
-            return CGSize(width: width, height: height)
+            let spacing: CGFloat = 5
+            let totalSpacing = spacing * 2  // space between 3 columns
+            let width = (collectionView.frame.width - totalSpacing) / 3
+            return CGSize(width: width, height: width)  // Square items
         }
 
         return CGSize(width: height, height: height)
