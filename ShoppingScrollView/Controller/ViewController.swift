@@ -23,6 +23,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var collcetionViewNewItemsHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var collectionViewPopular: UICollectionView!
+    @IBOutlet weak var collectionViewPopularHeight : NSLayoutConstraint!
 
     //Arry of recenlty viewed
     let recenlyImages = [
@@ -58,6 +60,22 @@ class ViewController: UIViewController {
             price: "$21,00"
         ),
     ]
+    
+    //Array of popluar items
+    let populatItems: [PopularItems] = [
+        PopularItems(
+            imageName: "Model1", title: "1780💙", desc: "New"
+        ),
+        PopularItems(
+            imageName: "Model2", title: "1780💙", desc: "Sale"
+        ),
+        PopularItems(
+            imageName: "Model3", title: "1780💙", desc: "Hot"
+        ),
+        PopularItems(
+            imageName: "Model4", title: "1780💙", desc: "Trending"
+        ),
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +91,7 @@ class ViewController: UIViewController {
         collcetionRecentHeight.constant = view.frame.width * 0.15
         collectionViewStoriesHeight.constant = view.frame.width * 0.50
         collcetionViewNewItemsHeight.constant = view.frame.width * 0.45
+        collectionViewPopularHeight.constant = view.frame.width * 0.35
     }
     //MARK: Method for recently viewed
     func recentlyViewed() {
@@ -85,6 +104,9 @@ class ViewController: UIViewController {
 
         collectionViewNewItems.delegate = self
         collectionViewNewItems.dataSource = self
+        
+        collectionViewPopular.delegate = self
+        collectionViewPopular.dataSource = self
     }
 
     //MARK: Add padding to view
@@ -143,6 +165,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
         else if collectionView == collectionViewNewItems {
             return newProducts.count
         }
+        //CollcetionView Popular
+        else if collectionView == collectionViewPopular{
+            return populatItems.count
+        }
         return 0
     }
 
@@ -185,6 +211,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
             )
             cell.txtTitle.text = newProducts[indexPath.row].title
             cell.txtPrice.text = newProducts[indexPath.row].price
+            return cell
+        }
+        //Collcetionview Popular
+        else if collectionView == collectionViewPopular{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PopularCell", for: indexPath) as! PopularViewCell
+            cell.imgPopularItems.image = UIImage( named: populatItems[indexPath.row].imageName)
+            cell.txtTitle.text = populatItems[indexPath.row].title
+            cell.txtDesc.text = populatItems[indexPath.row].desc
             return cell
         }
         return cell
