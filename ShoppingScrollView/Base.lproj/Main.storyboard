@@ -734,18 +734,19 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="pjN-AQ-qsb">
-                                                                            <rect key="frame" x="2" y="9" width="240" height="128"/>
-                                                                            <subviews>
-                                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7O-ee-6HB">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                                                                </imageView>
-                                                                            </subviews>
-                                                                        </stackView>
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GZb-Uv-bUu">
+                                                                            <rect key="frame" x="2" y="2" width="124" height="124"/>
+                                                                        </imageView>
                                                                     </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstItem="GZb-Uv-bUu" firstAttribute="leading" secondItem="gip-4C-oR2" secondAttribute="leading" constant="2" id="02h-iT-5Ky"/>
+                                                                        <constraint firstItem="GZb-Uv-bUu" firstAttribute="top" secondItem="gip-4C-oR2" secondAttribute="top" constant="2" id="FyA-IT-9iI"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="GZb-Uv-bUu" secondAttribute="bottom" constant="2" id="QML-gT-Eld"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="GZb-Uv-bUu" secondAttribute="trailing" constant="2" id="bAR-WD-zpK"/>
+                                                                    </constraints>
                                                                 </collectionViewCellContentView>
                                                                 <connections>
-                                                                    <outlet property="imgTop" destination="e7O-ee-6HB" id="QXQ-1W-xjP"/>
+                                                                    <outlet property="imgTop" destination="GZb-Uv-bUu" id="hiW-rc-4xZ"/>
                                                                 </connections>
                                                             </collectionViewCell>
                                                         </cells>
