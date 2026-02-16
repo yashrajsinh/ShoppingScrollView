@@ -30,6 +30,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var collectionViewCategories: UICollectionView!
     @IBOutlet weak var collectionViewCategoriesHeight: NSLayoutConstraint!
 
+    //CollcetionView Sale
+    @IBOutlet weak var collectionViewSale: UICollectionView!
+    @IBOutlet weak var collectionViewSaleHeight: NSLayoutConstraint!
+
     //Arry of recenlty viewed
     let recenlyImages = [
         "Item1", "Item2", "Item3", "Item4", "Item5", "Model1", "Item2", "Item4",
@@ -129,6 +133,7 @@ class ViewController: UIViewController {
         collcetionViewNewItemsHeight.constant = view.frame.width * 0.45
         collectionViewPopularHeight.constant = view.frame.width * 0.35
         collectionViewCategoriesHeight.constant = view.frame.width * 0.99
+        collectionViewSaleHeight.constant = view.frame.width * 0.45
     }
     //MARK: Method for recently viewed
     func recentlyViewed() {
@@ -147,6 +152,10 @@ class ViewController: UIViewController {
 
         collectionViewCategories.delegate = self
         collectionViewCategories.dataSource = self
+
+        collectionViewSale.delegate = self
+        collectionViewSale.dataSource = self
+
     }
 
     //MARK: Add padding to view
@@ -169,27 +178,50 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
 
         let height = collectionView.frame.height
 
-        // Recent → Square (for circle image)
+        // Recently → square
         if collectionView == collectionViewRecenly {
             return CGSize(width: height, height: height)
         }
 
+        // Stories → dynamic width
+        if collectionView == collcetionViewStories {
+            let imageName = storiesImages[indexPath.row]
+            guard let image = UIImage(named: imageName) else {
+                return CGSize(width: height, height: height)
+            }
+
+            let ratio = image.size.width / image.size.height
+            let width = height * ratio
+
+            return CGSize(width: width, height: height)
+        }
+
+        // New Items
+        if collectionView == collectionViewNewItems {
+            let width = collectionView.frame.width / 2 - 10
+            return CGSize(width: width, height: height)
+        }
+
+        // Popular
+        if collectionView == collectionViewPopular {
+            let width = collectionView.frame.width / 3 - 10
+            return CGSize(width: width, height: height)
+        }
+
+        // Categories
         if collectionView == collectionViewCategories {
             let width = collectionView.frame.width / 2 - 10
             let height = width * 1.2
             return CGSize(width: width, height: height)
         }
 
-        // Stories → Dynamic width based on image ratio
-        let imageName = storiesImages[indexPath.row]
-        guard let image = UIImage(named: imageName) else {
-            return CGSize(width: height, height: height)
+        // Sale
+        if collectionView == collectionViewSale {
+            let width = collectionView.frame.width / 3 - 10
+            return CGSize(width: width, height: height)
         }
 
-        let ratio = image.size.width / image.size.height
-        let width = height * ratio
-
-        return CGSize(width: width, height: height)
+        return CGSize(width: height, height: height)
     }
 
     func collectionView(
@@ -216,6 +248,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
         //Collcetion View Categories
         else if collectionView == collectionViewCategories {
             return categories.count
+        }
+        //ColcletionView Sale
+        else if collectionView == collectionViewSale {
+            return storiesImages.count
         }
         return 0
     }
@@ -285,6 +321,16 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
                 ) as! CategoriesViewCell
             let model = categories[indexPath.row]
             cell.configure(with: model)
+            return cell
+        }
+        //CollcetionView Sale
+        else if collectionView == collectionViewSale {
+            let cell =
+                collectionView.dequeueReusableCell(
+                    withReuseIdentifier: "CellSale",
+                    for: indexPath
+                ) as! SaleViewCell
+            cell.imgSale.image = UIImage(named: storiesImages[indexPath.row])
             return cell
         }
         return cell
