@@ -92,14 +92,24 @@ class ViewController: UIViewController {
     //Array of categories
     let categories = [
         Categories(
-            title: "Blonde",
+            title: " Blonde",
             count: 109,
             images: ["Item1", "Item2", "Item3", "Item4"]
         ),
         Categories(
-            title: "Brunette",
+            title: " Brunette",
             count: 530,
             images: ["Model1", "Model2", "Model3", "Model4"]
+        ),
+        Categories(
+            title: " Gray",
+            count: 185,
+            images: ["Item1", "Item2", "Item3", "Item4"]
+        ),
+        Categories(
+            title: " Bald",
+            count: 5,
+            images: ["Item1", "Item2", "Item3", "Item4"]
         ),
     ]
 
@@ -118,7 +128,7 @@ class ViewController: UIViewController {
         collectionViewStoriesHeight.constant = view.frame.width * 0.50
         collcetionViewNewItemsHeight.constant = view.frame.width * 0.45
         collectionViewPopularHeight.constant = view.frame.width * 0.35
-        collectionViewCategoriesHeight.constant = view.frame.width * 0.75
+        collectionViewCategoriesHeight.constant = view.frame.width * 0.99
     }
     //MARK: Method for recently viewed
     func recentlyViewed() {
