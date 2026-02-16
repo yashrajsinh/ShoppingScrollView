@@ -34,8 +34,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var collectionViewSale: UICollectionView!
     @IBOutlet weak var collectionViewSaleHeight: NSLayoutConstraint!
 
-    //Top Products View 
-    
+    //Top Products View
+
+    @IBOutlet weak var CollcetionViewTop: UICollectionView!
+
+    @IBOutlet weak var collcetionViewTopHeight: NSLayoutConstraint!
     //Arry of recenlty viewed
     let recenlyImages = [
         "Item1", "Item2", "Item3", "Item4", "Item5", "Model1", "Item2", "Item4",
@@ -135,6 +138,7 @@ class ViewController: UIViewController {
         collcetionViewNewItemsHeight.constant = view.frame.width * 0.45
         collectionViewPopularHeight.constant = view.frame.width * 0.35
         collectionViewCategoriesHeight.constant = view.frame.width * 0.99
+        collcetionViewTopHeight.constant = view.frame.width * 0.15
 
         // Sale: 3 columns, 2 rows with spacing
         let saleItemWidth = (view.frame.width - 20) / 3
@@ -160,6 +164,9 @@ class ViewController: UIViewController {
 
         collectionViewSale.delegate = self
         collectionViewSale.dataSource = self
+
+        CollcetionViewTop.delegate = self
+        CollcetionViewTop.dataSource = self
 
     }
 
@@ -227,7 +234,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
             let width = (collectionView.frame.width - totalSpacing) / 3
             return CGSize(width: width, height: width)  // Square items
         }
-
+        //Top Collcetion
+        if collectionView == CollcetionViewTop {
+            return CGSize(width: height, height: height)
+        }
         return CGSize(width: height, height: height)
     }
 
@@ -259,6 +269,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
         //ColcletionView Sale
         else if collectionView == collectionViewSale {
             return storiesImages.count
+        }
+        else if collectionView == CollcetionViewTop{
+            return recenlyImages.count
         }
         return 0
     }
@@ -338,6 +351,12 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
                     for: indexPath
                 ) as! SaleViewCell
             cell.imgSale.image = UIImage(named: storiesImages[indexPath.row])
+            return cell
+        }
+        //Collcetion Top CellTop
+        else if collectionView == CollcetionViewTop{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellTop", for: indexPath) as! TopViewCell
+            cell.imgTop.image = UIImage(named: recenlyImages[indexPath.row])
             return cell
         }
         return cell
