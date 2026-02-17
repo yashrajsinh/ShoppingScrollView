@@ -345,19 +345,19 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="3q7-Me-5pL">
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="3q7-Me-5pL">
                                                                             <rect key="frame" x="2" y="2" width="124" height="124"/>
                                                                             <subviews>
-                                                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="yTA-NY-v3o">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="124" height="59.5"/>
+                                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="yTA-NY-v3o">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="124" height="68"/>
                                                                                     <subviews>
-                                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7KO-Je-MV4">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="124" height="59.5"/>
+                                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7KO-Je-MV4">
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="124" height="68"/>
                                                                                         </imageView>
                                                                                     </subviews>
                                                                                 </stackView>
-                                                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Rf7-K2-Xxm">
-                                                                                    <rect key="frame" x="0.0" y="62.5" width="124" height="0.0"/>
+                                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Rf7-K2-Xxm">
+                                                                                    <rect key="frame" x="0.0" y="74" width="124" height="0.0"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwR-KV-Uxf">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="124" height="0.0"/>
@@ -368,10 +368,10 @@
                                                                                     </subviews>
                                                                                 </stackView>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="c3U-bS-lgL">
-                                                                                    <rect key="frame" x="0.0" y="65.5" width="124" height="58.5"/>
+                                                                                    <rect key="frame" x="0.0" y="80" width="124" height="44"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1yM-tw-iJL">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="124" height="58.5"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="124" height="44"/>
                                                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                                                             <nil key="textColor"/>
                                                                                             <nil key="highlightedColor"/>
@@ -446,23 +446,23 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="F8G-MA-W1a">
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="F8G-MA-W1a">
                                                                             <rect key="frame" x="2" y="2" width="124" height="124"/>
                                                                             <subviews>
                                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="us0-mE-WQ1">
-                                                                                    <rect key="frame" x="0.0" y="0.0" width="124" height="108"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="124" height="98"/>
                                                                                 </imageView>
                                                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="AQ3-kh-s8R">
-                                                                                    <rect key="frame" x="0.0" y="116" width="124" height="8"/>
+                                                                                    <rect key="frame" x="0.0" y="108" width="124" height="16"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hC-c4-K6x">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="63.5" height="8"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="63.5" height="16"/>
                                                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                                                             <nil key="textColor"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uqd-cA-6L8">
-                                                                                            <rect key="frame" x="64.5" y="0.0" width="59.5" height="8"/>
+                                                                                            <rect key="frame" x="64.5" y="0.0" width="59.5" height="16"/>
                                                                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                                                             <nil key="textColor"/>
                                                                                             <nil key="highlightedColor"/>
