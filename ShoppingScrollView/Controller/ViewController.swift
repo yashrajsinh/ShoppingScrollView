@@ -53,7 +53,7 @@ class ViewController: UIViewController {
 
     //Array of stories
     let storiesImages = [
-        "Model1", "Model2", "Model3", "Model4", "Model1", "Model2", "Model3",
+        "Model1", "Model4", "Model3", "Model4", "Model1", "Model4", "Model3",
     ]
 
     //Array of newItems
@@ -88,7 +88,7 @@ class ViewController: UIViewController {
             desc: "New "
         ),
         PopularItems(
-            imageName: "Model2",
+            imageName: "Model4",
             title: "1780💙",
             desc: "Sale "
         ),
@@ -114,7 +114,7 @@ class ViewController: UIViewController {
         Categories(
             title: " Brunette",
             count: 530,
-            images: ["Model1", "Model2", "Model3", "Model4"]
+            images: ["Item1", "Item2", "Item3", "Item4"]
         ),
         Categories(
             title: " Gray",

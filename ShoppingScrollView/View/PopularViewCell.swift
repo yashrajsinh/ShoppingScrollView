@@ -25,16 +25,12 @@ class PopularViewCell: UICollectionViewCell {
 //        imgPopularItems.layer.masksToBounds = false
 //        
 //        // White border
-//        imgPopularItems.layer.borderWidth = 2
-//        imgPopularItems.layer.borderColor = UIColor.white.cgColor
-//        
-        //Borders to self
-        self.layer.borderWidth = 4
-        self.layer.borderColor = UIColor.systemGray6.cgColor
+        // Soft shadow on the cell card
+        self.layer.cornerRadius = 12
         self.layer.shadowColor = UIColor.white.cgColor
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowRadius = 4.0
-        self.layer.shadowOffset = CGSize(width: 1, height: 1)
+        self.layer.shadowOpacity = 0.08
+        self.layer.shadowRadius = 6
+        self.layer.shadowOffset = CGSize(width: 0, height: 2)
         self.layer.masksToBounds = false
         
         //cornder radius

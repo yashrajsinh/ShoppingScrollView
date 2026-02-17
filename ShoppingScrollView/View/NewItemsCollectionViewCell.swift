@@ -14,18 +14,20 @@ class NewItemsCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        imgNewItems.clipsToBounds = true
-        // White border
-        imgNewItems.layer.borderWidth = 2
-        imgNewItems.layer.borderColor = UIColor.white.cgColor
-
         // Shadow OUTSIDE the circle
-        imgNewItems.layer.shadowColor = UIColor.black.cgColor
-        imgNewItems.layer.shadowOpacity = 0.3
-        imgNewItems.layer.shadowRadius = 4.0
-        imgNewItems.layer.shadowOffset = CGSize(width: 1, height: 1)
-        imgNewItems.layer.masksToBounds = false
-        
+        // Rounded corners on the image - matches the screenshot
+        imgNewItems.layer.cornerRadius = 12
+        imgNewItems.layer.borderWidth = 2
+        imgNewItems.clipsToBounds = true
+        imgNewItems.contentMode = .scaleAspectFill
+
+        // Soft shadow on the cell card
+        self.layer.cornerRadius = 12
+        self.layer.shadowColor = UIColor.white.cgColor
+        self.layer.shadowOpacity = 0.08
+        self.layer.shadowRadius = 6
+        self.layer.shadowOffset = CGSize(width: 0, height: 2)
+        self.layer.masksToBounds = false
         
     }
 }
