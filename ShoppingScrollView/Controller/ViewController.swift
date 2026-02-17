@@ -39,6 +39,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var CollcetionViewTop: UICollectionView!
 
     @IBOutlet weak var collcetionViewTopHeight: NSLayoutConstraint!
+    
+    //For you Collcetion
+    @IBOutlet weak var collcetionViewYou: UICollectionView!
+
+    @IBOutlet weak var collcetionViewForYouHeight: NSLayoutConstraint!
+    
     //Arry of recenlty viewed
     let recenlyImages = [
         "Item1", "Item2", "Item3", "Item4", "Item5", "Model1", "Item2", "Item4",
@@ -143,6 +149,8 @@ class ViewController: UIViewController {
         // Sale: 3 columns, 2 rows with spacing
         let saleItemWidth = (view.frame.width - 20) / 3
         collectionViewSaleHeight.constant = (saleItemWidth * 2) + 5  // 2 rows + spacing
+        
+        collcetionViewForYouHeight.constant = view.frame.width * 0.20
     }
     //MARK: Method for recently viewed
     func recentlyViewed() {
@@ -167,7 +175,9 @@ class ViewController: UIViewController {
 
         CollcetionViewTop.delegate = self
         CollcetionViewTop.dataSource = self
-
+        
+        collcetionViewYou.delegate = self
+        collcetionViewYou.dataSource = self
     }
 
     //MARK: Add padding to view
@@ -238,6 +248,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
         if collectionView == CollcetionViewTop {
             return CGSize(width: height, height: height)
         }
+        
+        //For your
+        if collectionView == collcetionViewYou{
+            let spacing: CGFloat = 5
+            let totalSpacing = spacing * 2  // space between 3 columns
+            let width = (collectionView.frame.width - totalSpacing) / 2
+            return CGSize(width: width, height: width)  // Square items
+        }
         return CGSize(width: height, height: height)
     }
 
@@ -272,6 +290,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
         }
         else if collectionView == CollcetionViewTop{
             return recenlyImages.count
+        }
+        else if collectionView == collcetionViewYou{
+            return newProducts.count
         }
         return 0
     }
@@ -359,6 +380,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
             cell.imgTop.image = UIImage(named: recenlyImages[indexPath.row])
             return cell
         }
+        //CollectionView for you
+        else if collectionView == collcetionViewYou{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "YouCell", for: indexPath) as! ForYouViewCell
+            cell.imgModel.image = UIImage(named: newProducts[indexPath.row].imageName)
+            cell.txtTitle.text = newProducts[indexPath.row].title
+            cell.txtPrice.text = newProducts[indexPath.row].price
+            return cell
+            }
         return cell
     }
 }
