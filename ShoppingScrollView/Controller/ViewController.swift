@@ -109,22 +109,22 @@ class ViewController: UIViewController {
         Categories(
             title: " Blonde",
             count: 109,
-            images: ["Item1", "Item2", "Item3", "Item4"]
+            images: ["Glass1", "Glass2", "Model1", "Model4"]
         ),
         Categories(
             title: " Brunette",
             count: 530,
-            images: ["Item1", "Item2", "Item3", "Item4"]
+            images: ["Model4", "Model1", "Glass2", "Glass1"]
         ),
         Categories(
             title: " Gray",
             count: 185,
-            images: ["Item1", "Item2", "Item3", "Item4"]
+            images: ["Model1", "Glass1", "Model4", "Glass2"]
         ),
         Categories(
             title: " Bald",
             count: 5,
-            images: ["Item1", "Item2", "Item3", "Item4"]
+            images: ["Glass2", "Model4", "Glass1", "Model4"]
         ),
     ]
 
