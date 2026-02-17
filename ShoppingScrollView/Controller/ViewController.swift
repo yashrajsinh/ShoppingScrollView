@@ -145,6 +145,7 @@ class ViewController: UIViewController {
         collcetionViewNewItemsHeight.constant = view.frame.width * 0.45
         collectionViewPopularHeight.constant = view.frame.width * 0.35
         collectionViewCategoriesHeight.constant = view.frame.width * 0.99
+        collcetionViewTopHeight.constant = view.frame.width * 0.15
         collcetionViewForYouHeight.constant = view.frame.width * 0.20
 
         // Sale: 3 columns, 2 rows with spacing
