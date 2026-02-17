@@ -39,12 +39,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var CollcetionViewTop: UICollectionView!
 
     @IBOutlet weak var collcetionViewTopHeight: NSLayoutConstraint!
-    
+
     //For you Collcetion
     @IBOutlet weak var collcetionViewYou: UICollectionView!
 
     @IBOutlet weak var collcetionViewForYouHeight: NSLayoutConstraint!
-    
+
     //Arry of recenlty viewed
     let recenlyImages = [
         "Item1", "Item2", "Item3", "Item4", "Item5", "Model1", "Item2", "Item4",
@@ -133,6 +133,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         addPadding()
         recentlyViewed()
+        fixForYouLayout()
 
     }
 
@@ -144,13 +145,19 @@ class ViewController: UIViewController {
         collcetionViewNewItemsHeight.constant = view.frame.width * 0.45
         collectionViewPopularHeight.constant = view.frame.width * 0.35
         collectionViewCategoriesHeight.constant = view.frame.width * 0.99
-        collcetionViewTopHeight.constant = view.frame.width * 0.15
+        collcetionViewForYouHeight.constant = view.frame.width * 0.20
 
         // Sale: 3 columns, 2 rows with spacing
         let saleItemWidth = (view.frame.width - 20) / 3
         collectionViewSaleHeight.constant = (saleItemWidth * 2) + 5  // 2 rows + spacing
-        
-        collcetionViewForYouHeight.constant = view.frame.width * 0.20
+
+        // ForYou: 2 columns, 3 rows
+        let youSpacing: CGFloat = 5
+        let youItemWidth = (view.frame.width - youSpacing) / 2
+        let youItemHeight = youItemWidth * 1.3
+        collcetionViewForYouHeight.constant =
+            (youItemHeight * 3) + (youSpacing * 2)
+
     }
     //MARK: Method for recently viewed
     func recentlyViewed() {
@@ -175,9 +182,19 @@ class ViewController: UIViewController {
 
         CollcetionViewTop.delegate = self
         CollcetionViewTop.dataSource = self
-        
+
         collcetionViewYou.delegate = self
         collcetionViewYou.dataSource = self
+    }
+
+    // MARK: This replaces the broken storyboard layout with a fresh one
+    func fixForYouLayout() {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 5
+        layout.minimumInteritemSpacing = 5
+        layout.scrollDirection = .vertical
+        collcetionViewYou.collectionViewLayout = layout
+        collcetionViewYou.isScrollEnabled = false  // let the scroll view handle scrolling
     }
 
     //MARK: Add padding to view
@@ -248,13 +265,12 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
         if collectionView == CollcetionViewTop {
             return CGSize(width: height, height: height)
         }
-        
+
         //For your
-        if collectionView == collcetionViewYou{
+        if collectionView == collcetionViewYou {
             let spacing: CGFloat = 5
-            let totalSpacing = spacing * 2  // space between 3 columns
-            let width = (collectionView.frame.width - totalSpacing) / 2
-            return CGSize(width: width, height: width)  // Square items
+            let width = (collectionView.frame.width - spacing) / 2
+            return CGSize(width: width, height: width * 1.3)
         }
         return CGSize(width: height, height: height)
     }
@@ -287,11 +303,9 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
         //ColcletionView Sale
         else if collectionView == collectionViewSale {
             return storiesImages.count
-        }
-        else if collectionView == CollcetionViewTop{
+        } else if collectionView == CollcetionViewTop {
             return recenlyImages.count
-        }
-        else if collectionView == collcetionViewYou{
+        } else if collectionView == collcetionViewYou {
             return newProducts.count
         }
         return 0
@@ -375,19 +389,29 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
             return cell
         }
         //Collcetion Top CellTop
-        else if collectionView == CollcetionViewTop{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellTop", for: indexPath) as! TopViewCell
+        else if collectionView == CollcetionViewTop {
+            let cell =
+                collectionView.dequeueReusableCell(
+                    withReuseIdentifier: "CellTop",
+                    for: indexPath
+                ) as! TopViewCell
             cell.imgTop.image = UIImage(named: recenlyImages[indexPath.row])
             return cell
         }
         //CollectionView for you
-        else if collectionView == collcetionViewYou{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "YouCell", for: indexPath) as! ForYouViewCell
-            cell.imgModel.image = UIImage(named: newProducts[indexPath.row].imageName)
+        else if collectionView == collcetionViewYou {
+            let cell =
+                collectionView.dequeueReusableCell(
+                    withReuseIdentifier: "YouCell",
+                    for: indexPath
+                ) as! ForYouViewCell
+            cell.imgModel.image = UIImage(
+                named: newProducts[indexPath.row].imageName
+            )
             cell.txtTitle.text = newProducts[indexPath.row].title
             cell.txtPrice.text = newProducts[indexPath.row].price
             return cell
-            }
+        }
         return cell
     }
 }
