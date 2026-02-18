@@ -233,34 +233,57 @@ class ViewController: UIViewController {
 
         collectionViewRecenly.delegate = self
         collectionViewRecenly.dataSource = self
+        collectionViewRecenly.clipsToBounds = false
+        collectionViewRecenly.layer.masksToBounds = false
 
         collcetionViewStories.delegate = self
         collcetionViewStories.dataSource = self
+        collcetionViewStories.clipsToBounds = false
+        collcetionViewStories.layer.masksToBounds = false
 
         collectionViewNewItems.delegate = self
         collectionViewNewItems.dataSource = self
+        collectionViewNewItems.clipsToBounds = false
+        collectionViewNewItems.layer.masksToBounds = false
 
         collectionViewPopular.delegate = self
         collectionViewPopular.dataSource = self
+        collectionViewPopular.clipsToBounds = false
+        collectionViewPopular.layer.masksToBounds = false
 
         collectionViewCategories.delegate = self
         collectionViewCategories.dataSource = self
+        collectionViewCategories.clipsToBounds = false
+        collectionViewCategories.layer.masksToBounds = false
 
         collectionViewSale.delegate = self
         collectionViewSale.dataSource = self
+        collectionViewSale.clipsToBounds = false
+        collectionViewSale.layer.masksToBounds = false
 
         CollcetionViewTop.delegate = self
         CollcetionViewTop.dataSource = self
+        CollcetionViewTop.clipsToBounds = false
+        CollcetionViewTop.layer.masksToBounds = false
 
         collcetionViewYou.delegate = self
         collcetionViewYou.dataSource = self
+        collcetionViewYou.clipsToBounds = false
+        collcetionViewYou.layer.masksToBounds = false
+
 
         // Fix shadow clipping on circle collections
         collectionViewRecenly.clipsToBounds = false
         collectionViewRecenly.layer.masksToBounds = false
+        collectionViewRecenly.clipsToBounds = false
+        collectionViewRecenly.layer.masksToBounds = false
+
 
         CollcetionViewTop.clipsToBounds = false
         CollcetionViewTop.layer.masksToBounds = false
+        CollcetionViewTop.clipsToBounds = false
+        CollcetionViewTop.layer.masksToBounds = false
+        
     }
 
     // MARK: This replaces the broken storyboard layout with a fresh one
