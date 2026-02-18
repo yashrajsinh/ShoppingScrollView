@@ -18,29 +18,36 @@ class NewItemsCollectionViewCell: UICollectionViewCell {
     }
 
     private func setupCard() {
-        imgNewItems.contentMode = .scaleAspectFill
-        imgNewItems.clipsToBounds = true
-        imgNewItems.layer.cornerRadius = 16
 
-        // WHITE card background
-        contentView.backgroundColor = .white
-        contentView.layer.cornerRadius = 16
-        contentView.layer.masksToBounds = true
+        imgNewItems.layer.cornerRadius = 1
+        imgNewItems.layer.cornerCurve = .continuous
+        imgNewItems.layer.masksToBounds = false
 
-        self.backgroundColor = .clear
-        self.layer.masksToBounds = false
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = 0.10
-        self.layer.shadowRadius = 10
-        self.layer.shadowOffset = CGSize(width: 0, height: 4)
+        // White border
+        imgNewItems.layer.borderWidth = 7
+        imgNewItems.layer.borderColor = UIColor.white.cgColor
+
+        // Bottom-only shadow
+        imgNewItems.layer.shadowColor = UIColor.black.cgColor
+        imgNewItems.layer.shadowOpacity = 0.20
+        imgNewItems.layer.shadowRadius = 2
+        imgNewItems.layer.shadowOffset = CGSize(width: 0, height: 4)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.layer.shadowPath =
+
+        let shadowRect = CGRect(
+            x: imgNewItems.bounds.origin.x,
+            y: imgNewItems.bounds.origin.y + 8,  // pushes shadow downward
+            width: imgNewItems.bounds.width,
+            height: imgNewItems.bounds.height
+        )
+
+        imgNewItems.layer.shadowPath =
             UIBezierPath(
-                roundedRect: self.bounds,
-                cornerRadius: 16
+                roundedRect: imgNewItems.bounds,
+                cornerRadius: 1
             ).cgPath
     }
 }
