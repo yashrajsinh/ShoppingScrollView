@@ -12,37 +12,36 @@ class CategoriesViewCell: UICollectionViewCell {
     @IBOutlet weak var txtTitle: UILabel!
     @IBOutlet weak var txtCount: UILabel!
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    
-        // Soft shadow on the cell card
-        self.layer.cornerRadius = 12
-        self.layer.shadowColor = UIColor.white.cgColor
-        self.layer.shadowOpacity = 0.08
-        self.layer.shadowRadius = 6
-        self.layer.shadowOffset = CGSize(width: 0, height: 2)
-        self.layer.masksToBounds = false
-        
-    }
-    
-    //MARK: Func would allow us to set images based on size
-    func configure(with model: Categories) {
-        txtTitle.text = model.title
-        txtCount.text = "\(model.count)"
+    override func awakeFromNib() {
+          super.awakeFromNib()
+          contentView.backgroundColor = .white
+          contentView.layer.cornerRadius = 16
+          contentView.layer.masksToBounds = true
 
-        for (index, imageView) in imageViews.enumerated() {
+          self.backgroundColor = .clear
+          self.layer.masksToBounds = false
+          self.layer.shadowColor = UIColor.black.cgColor
+          self.layer.shadowOpacity = 0.10
+          self.layer.shadowRadius = 8
+          self.layer.shadowOffset = CGSize(width: 0, height: 4)
+      }
 
-            imageView.contentMode = .scaleAspectFill
-            imageView.clipsToBounds = true
-            imageView.layer.cornerRadius = 10
+      override func layoutSubviews() {
+          super.layoutSubviews()
+          self.layer.shadowPath = UIBezierPath(
+              roundedRect: self.bounds,
+              cornerRadius: 16
+          ).cgPath
+      }
 
-            if index < model.images.count {
-                imageView.image = UIImage(named: model.images[index])
-            } else {
-                imageView.image = nil
-            }
-
-        }
-
-    }
+      func configure(with model: Categories) {
+          txtTitle.text = model.title
+          txtCount.text = "\(model.count)"
+          for (index, imageView) in imageViews.enumerated() {
+              imageView.contentMode = .scaleAspectFill
+              imageView.clipsToBounds = true
+              imageView.layer.cornerRadius = 8
+              imageView.image = index < model.images.count ? UIImage(named: model.images[index]) : nil
+          }
+      }
 }

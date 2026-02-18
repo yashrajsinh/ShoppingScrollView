@@ -18,32 +18,28 @@ class PopularViewCell: UICollectionViewCell {
     }
 
     private func setupCard() {
-        // Card (the cell itself)
-        // ── Image ───────────────────────────────────────────
         imgPopularItems.contentMode = .scaleAspectFill
         imgPopularItems.clipsToBounds = true
-        imgPopularItems.layer.cornerRadius = 30
+        imgPopularItems.layer.cornerRadius = 16
 
-        // ── contentView card style ───────────────────────────
-        // contentView is NOT clipped by the cell, so shadow works here
         contentView.backgroundColor = .white
-        contentView.layer.cornerRadius = 20
-        contentView.layer.masksToBounds = false
+        contentView.layer.cornerRadius = 16
+        contentView.layer.masksToBounds = true
 
-        // Shadow on contentView (works because cell clips, not contentView)
-        contentView.layer.shadowColor = UIColor.black.cgColor
-        contentView.layer.shadowOpacity = 0.55  // visible shadow
-        contentView.layer.shadowRadius = 10
-        contentView.layer.shadowOffset = CGSize(width: 5, height: 5)
+        self.backgroundColor = .clear
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.10
+        self.layer.shadowRadius = 10
+        self.layer.shadowOffset = CGSize(width: 0, height: 4)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        // Update shadow path for performance (matches the card shape)
         self.layer.shadowPath =
             UIBezierPath(
                 roundedRect: self.bounds,
-                cornerRadius: 20
+                cornerRadius: 16
             ).cgPath
     }
 }
