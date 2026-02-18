@@ -18,28 +18,28 @@ class PopularViewCell: UICollectionViewCell {
     }
 
     private func setupCard() {
-        imgPopularItems.contentMode = .scaleAspectFill
         imgPopularItems.clipsToBounds = true
-        imgPopularItems.layer.cornerRadius = 16
+        imgPopularItems.layer.cornerRadius = 20
 
-        contentView.backgroundColor = .white
-        contentView.layer.cornerRadius = 16
-        contentView.layer.masksToBounds = true
-
-        self.backgroundColor = .clear
-        self.layer.masksToBounds = false
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = 0.10
-        self.layer.shadowRadius = 10
-        self.layer.shadowOffset = CGSize(width: 0, height: 4)
+        // White border
+        contentView.layer.borderColor = UIColor.white.cgColor
+        // Shadow on cell
+        contentView.backgroundColor = .clear
+        contentView.layer.masksToBounds = false
+        contentView.layer.cornerRadius = 20
+        contentView.layer.shadowColor = UIColor.black.cgColor
+        contentView.layer.shadowOpacity = 0.15
+        contentView.layer.shadowRadius = 5
+        contentView.layer.shadowOffset = CGSize(width: 0, height: 3)
+       
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.layer.shadowPath =
+        layer.shadowPath =
             UIBezierPath(
-                roundedRect: self.bounds,
-                cornerRadius: 16
+                roundedRect: contentView.bounds,
+                cornerRadius: 15
             ).cgPath
     }
 }

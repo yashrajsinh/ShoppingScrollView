@@ -59,22 +59,22 @@ class ViewController: UIViewController {
     //Array of newItems
     let newProducts: [NewItems] = [
         NewItems(
-            imageName: "Glass1",
+            imageName: "Glass2",
             title: "Lorem ipsum dolor sit amet consectetur.",
             price: "$17,00"
         ),
         NewItems(
-            imageName: "Glass2",
+            imageName: "Glass3",
             title: "Lorem ipsum dolor sit amet consectetur.",
             price: "$32,00"
         ),
         NewItems(
-            imageName: "Glass1",
+            imageName: "Glass2",
             title: "Lorem ipsum dolor sit amet consectetur.",
             price: "$21,00"
         ),
         NewItems(
-            imageName: "Glass2",
+            imageName: "Glass3",
             title: "Lorem ipsum dolor sit amet consectetur.",
             price: "$21,00"
         ),
@@ -140,7 +140,7 @@ class ViewController: UIViewController {
         fixStoriesLayout()
         fixRecentlyLayout()
         fixTopLayout()
-      
+
     }
 
     //MARK: Set custom heights
@@ -148,7 +148,7 @@ class ViewController: UIViewController {
         super.viewDidLayoutSubviews()
         collcetionRecentHeight.constant = view.frame.width * 0.15
         collectionViewStoriesHeight.constant = view.frame.width * 0.50
-        collcetionViewNewItemsHeight.constant = view.frame.width * 0.65
+        collcetionViewNewItemsHeight.constant = view.frame.width * 0.55
         collectionViewPopularHeight.constant = view.frame.width * 0.45
         collectionViewCategoriesHeight.constant = view.frame.width * 1.10
         collcetionViewTopHeight.constant = view.frame.width * 0.15
@@ -170,7 +170,7 @@ class ViewController: UIViewController {
             (youItemHeight * 3) + (youSpacing * 2) + (youInset * 2)
 
     }
-    
+
     func fixRecentlyLayout() {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 12
@@ -222,7 +222,7 @@ class ViewController: UIViewController {
     func fixStoriesLayout() {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 6
-        layout.minimumInteritemSpacing = 6
+        layout.minimumInteritemSpacing = 8
         layout.scrollDirection = .horizontal
         collcetionViewStories.collectionViewLayout = layout
         collcetionViewStories.isScrollEnabled = true
@@ -254,13 +254,13 @@ class ViewController: UIViewController {
 
         collcetionViewYou.delegate = self
         collcetionViewYou.dataSource = self
-        
+
         // Fix shadow clipping on circle collections
-           collectionViewRecenly.clipsToBounds = false
-           collectionViewRecenly.layer.masksToBounds = false
-           
-           CollcetionViewTop.clipsToBounds = false
-           CollcetionViewTop.layer.masksToBounds = false
+        collectionViewRecenly.clipsToBounds = false
+        collectionViewRecenly.layer.masksToBounds = false
+
+        CollcetionViewTop.clipsToBounds = false
+        CollcetionViewTop.layer.masksToBounds = false
     }
 
     // MARK: This replaces the broken storyboard layout with a fresh one
@@ -428,6 +428,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
             )
             cell.txtTitle.text = newProducts[indexPath.row].title
             cell.txtPrice.text = newProducts[indexPath.row].price
+            cell.layoutIfNeeded()
+            cell.updateShadow()
             return cell
         }
         //Collcetionview Popular
