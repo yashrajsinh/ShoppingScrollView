@@ -14,16 +14,16 @@ class StoriesViewCell: UICollectionViewCell {
         super.awakeFromNib()
         imgStories.contentMode = .scaleAspectFill
         imgStories.clipsToBounds = true
-        imgStories.layer.cornerRadius = 16
+        imgStories.layer.cornerRadius = 20
 
-        contentView.layer.cornerRadius = 10
+        contentView.layer.cornerRadius = 20
         contentView.layer.masksToBounds = true
 
         self.layer.masksToBounds = false
         self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = 0.12
-        self.layer.shadowRadius = 1
-        self.layer.shadowOffset = CGSize(width: 0, height: 1)
+        self.layer.shadowOpacity = 0.15
+        self.layer.shadowRadius = 3
+        self.layer.shadowOffset = CGSize(width: 1, height: 1)
     }
 
     override func layoutSubviews() {

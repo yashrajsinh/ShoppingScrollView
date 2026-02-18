@@ -221,10 +221,9 @@ class ViewController: UIViewController {
 
     func fixStoriesLayout() {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 12
-        layout.minimumInteritemSpacing = 12
+        layout.minimumLineSpacing = 6
+        layout.minimumInteritemSpacing = 6
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         collcetionViewStories.collectionViewLayout = layout
         collcetionViewStories.isScrollEnabled = true
     }
