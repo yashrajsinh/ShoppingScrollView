@@ -16,14 +16,14 @@ class StoriesViewCell: UICollectionViewCell {
         imgStories.clipsToBounds = true
         imgStories.layer.cornerRadius = 16
 
-        contentView.layer.cornerRadius = 16
+        contentView.layer.cornerRadius = 10
         contentView.layer.masksToBounds = true
 
         self.layer.masksToBounds = false
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 0.12
-        self.layer.shadowRadius = 8
-        self.layer.shadowOffset = CGSize(width: 0, height: 4)
+        self.layer.shadowRadius = 1
+        self.layer.shadowOffset = CGSize(width: 0, height: 1)
     }
 
     override func layoutSubviews() {
@@ -31,7 +31,7 @@ class StoriesViewCell: UICollectionViewCell {
         self.layer.shadowPath =
             UIBezierPath(
                 roundedRect: self.bounds,
-                cornerRadius: 16
+                cornerRadius: 10
             ).cgPath
     }
 }

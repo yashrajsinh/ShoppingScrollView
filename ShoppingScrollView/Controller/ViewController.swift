@@ -138,17 +138,20 @@ class ViewController: UIViewController {
         fixPopularLayout()
         fixSaleLayout()
         fixStoriesLayout()
+        fixRecentlyLayout()
+        fixTopLayout()
+      
     }
 
     //MARK: Set custom heights
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        collcetionRecentHeight.constant = view.frame.width * 0.22
+        collcetionRecentHeight.constant = view.frame.width * 0.15
         collectionViewStoriesHeight.constant = view.frame.width * 0.50
         collcetionViewNewItemsHeight.constant = view.frame.width * 0.65
         collectionViewPopularHeight.constant = view.frame.width * 0.45
         collectionViewCategoriesHeight.constant = view.frame.width * 1.10
-        collcetionViewTopHeight.constant = view.frame.width * 0.22
+        collcetionViewTopHeight.constant = view.frame.width * 0.15
 
         // Sale — accounts for 8pt insets + spacing
         let saleInset: CGFloat = 8
@@ -166,6 +169,24 @@ class ViewController: UIViewController {
         collcetionViewForYouHeight.constant =
             (youItemHeight * 3) + (youSpacing * 2) + (youInset * 2)
 
+    }
+    
+    func fixRecentlyLayout() {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 12
+        layout.minimumInteritemSpacing = 12
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 6, left: 8, bottom: 6, right: 8)
+        collectionViewRecenly.collectionViewLayout = layout
+    }
+
+    func fixTopLayout() {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 12
+        layout.minimumInteritemSpacing = 12
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 6, left: 8, bottom: 6, right: 8)
+        CollcetionViewTop.collectionViewLayout = layout
     }
 
     func fixNewItemsLayout() {
@@ -234,6 +255,13 @@ class ViewController: UIViewController {
 
         collcetionViewYou.delegate = self
         collcetionViewYou.dataSource = self
+        
+        // Fix shadow clipping on circle collections
+           collectionViewRecenly.clipsToBounds = false
+           collectionViewRecenly.layer.masksToBounds = false
+           
+           CollcetionViewTop.clipsToBounds = false
+           CollcetionViewTop.layer.masksToBounds = false
     }
 
     // MARK: This replaces the broken storyboard layout with a fresh one
