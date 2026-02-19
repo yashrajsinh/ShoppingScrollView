@@ -16,11 +16,12 @@ class CategoriesViewCell: UICollectionViewCell {
         super.awakeFromNib()
 
         contentView.backgroundColor = .white
-        contentView.layer.cornerRadius = 10
+        contentView.layer.cornerRadius = 20
       
         contentView.layer.masksToBounds = true
 
         self.backgroundColor = .clear
+        self.layer.cornerRadius = 10
         self.layer.masksToBounds = false
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 0.20

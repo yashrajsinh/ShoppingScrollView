@@ -117,7 +117,7 @@ class ViewController: UIViewController {
             images: ["Model4", "Model1", "Glass2", "Glass1"]
         ),
         Categories(
-            title: " Gray",
+            title: " Red Head",
             count: 185,
             images: ["Model1", "Glass1", "Model4", "Glass2"]
         ),
