@@ -18,32 +18,35 @@ class NewItemsCollectionViewCell: UICollectionViewCell {
     }
 
     private func setupCard() {
-        // Card (the cell itself)
-        // ── Image ───────────────────────────────────────────
         imgNewItems.contentMode = .scaleAspectFill
         imgNewItems.clipsToBounds = true
-        imgNewItems.layer.cornerRadius = 20
+        imgNewItems.layer.cornerRadius = 16
+        imgNewItems.layer.cornerCurve = .continuous
+        imgNewItems.layer.borderWidth = 8
+        imgNewItems.layer.borderColor = UIColor.white.cgColor
 
-        // ── contentView card style ───────────────────────────
-        // contentView is NOT clipped by the cell, so shadow works here
-        contentView.backgroundColor = .white
-        contentView.layer.cornerRadius = 20
+        self.backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        self.layer.masksToBounds = false
         contentView.layer.masksToBounds = false
 
-        // Shadow on contentView (works because cell clips, not contentView)
-        contentView.layer.shadowColor = UIColor.black.cgColor
-        contentView.layer.shadowOpacity = 0.45  // visible shadow
-        contentView.layer.shadowRadius = 15
-        contentView.layer.shadowOffset = CGSize(width: 5, height: 5)
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.15
+        self.layer.shadowRadius = 12
+        self.layer.shadowOffset = CGSize(width: 0, height: 5)
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        // Update shadow path for performance (matches the card shape)
+        updateShadow()
+    }
+
+    // Call this from ViewController AFTER setting the image
+    func updateShadow() {
         self.layer.shadowPath =
             UIBezierPath(
-                roundedRect: self.bounds,
-                cornerRadius: 15
+                roundedRect: imgNewItems.frame,
+                cornerRadius: 16
             ).cgPath
     }
 }

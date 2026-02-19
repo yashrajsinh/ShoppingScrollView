@@ -9,20 +9,49 @@ import UIKit
 
 class SaleViewCell: UICollectionViewCell {
     @IBOutlet weak var imgSale: UIImageView!
-    
+    @IBOutlet weak var lblTwenty : UILabel!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupCard()
+    }
+
+    private func setupCard() {
+        imgSale.contentMode = .scaleAspectFill
+        imgSale.clipsToBounds = true
+        imgSale.layer.cornerRadius = 10
+        imgSale.layer.cornerCurve = .continuous
+        imgSale.layer.borderWidth = 6
+        imgSale.layer.borderColor = UIColor.white.cgColor
+        
+        lblTwenty.layer.cornerRadius = 8
+        lblTwenty.layer.masksToBounds = true
+  
+        self.backgroundColor = .clear
+        self.layer.masksToBounds = false
+        
+        contentView.backgroundColor = .clear
+        contentView.layer.cornerRadius = 15
+        contentView.layer.masksToBounds = true
+        contentView.bringSubviewToFront(lblTwenty)
+        
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.10
+        self.layer.shadowRadius = 8
+        self.layer.shadowOffset = CGSize(width: 0, height: 5)
+    }
+
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        imgSale.clipsToBounds = true
-        // White border
-        imgSale.layer.borderWidth = 2
-        imgSale.layer.borderColor = UIColor.systemGray5.cgColor
+        updateShadow()
+    }
 
-        // Shadow OUTSIDE the circle
-        imgSale.layer.shadowColor = UIColor.black.cgColor
-        imgSale.layer.shadowOpacity = 0.3
-        imgSale.layer.shadowRadius = 2.0
-        imgSale.layer.shadowOffset = CGSize(width: 1, height: 1)
-        imgSale.layer.masksToBounds = false
+    // Call this from ViewController AFTER setting the image
+    func updateShadow() {
+        self.layer.shadowPath =
+            UIBezierPath(
+                roundedRect: imgSale.frame,
+                cornerRadius: 6
+            ).cgPath
     }
 }

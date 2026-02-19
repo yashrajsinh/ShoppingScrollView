@@ -44,6 +44,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var collcetionViewYou: UICollectionView!
 
     @IBOutlet weak var collcetionViewForYouHeight: NSLayoutConstraint!
+    
+    //Label Radius
+    @IBOutlet weak var lbl00:UILabel!
+    @IBOutlet weak var lbl36:UILabel!
+    @IBOutlet weak var lbl58:UILabel!
 
     //Arry of recenlty viewed
     let recenlyImages = [
@@ -59,22 +64,22 @@ class ViewController: UIViewController {
     //Array of newItems
     let newProducts: [NewItems] = [
         NewItems(
-            imageName: "Glass1",
+            imageName: "Glass2",
             title: "Lorem ipsum dolor sit amet consectetur.",
             price: "$17,00"
         ),
         NewItems(
-            imageName: "Glass2",
+            imageName: "Glass3",
             title: "Lorem ipsum dolor sit amet consectetur.",
             price: "$32,00"
         ),
         NewItems(
-            imageName: "Glass1",
+            imageName: "Glass2",
             title: "Lorem ipsum dolor sit amet consectetur.",
             price: "$21,00"
         ),
         NewItems(
-            imageName: "Glass2",
+            imageName: "Glass3",
             title: "Lorem ipsum dolor sit amet consectetur.",
             price: "$21,00"
         ),
@@ -117,7 +122,7 @@ class ViewController: UIViewController {
             images: ["Model4", "Model1", "Glass2", "Glass1"]
         ),
         Categories(
-            title: " Gray",
+            title: " Red Head",
             count: 185,
             images: ["Model1", "Glass1", "Model4", "Glass2"]
         ),
@@ -134,7 +139,25 @@ class ViewController: UIViewController {
         addPadding()
         recentlyViewed()
         fixForYouLayout()
+        fixNewItemsLayout()
+        fixPopularLayout()
+        fixSaleLayout()
+        fixStoriesLayout()
+        fixRecentlyLayout()
+        fixTopLayout()
+        fixCategoriesLayout()
 
+    }
+    //MARK Categories viwe
+    func fixCategoriesLayout() {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 12
+        layout.minimumInteritemSpacing = 12
+        layout.scrollDirection = .vertical
+        // Insets give shadow room on all sides
+        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        collectionViewCategories.collectionViewLayout = layout
+        collectionViewCategories.isScrollEnabled = false
     }
 
     //MARK: Set custom heights
@@ -142,50 +165,157 @@ class ViewController: UIViewController {
         super.viewDidLayoutSubviews()
         collcetionRecentHeight.constant = view.frame.width * 0.15
         collectionViewStoriesHeight.constant = view.frame.width * 0.50
-        collcetionViewNewItemsHeight.constant = view.frame.width * 0.45
-        collectionViewPopularHeight.constant = view.frame.width * 0.35
-        collectionViewCategoriesHeight.constant = view.frame.width * 0.99
+        collcetionViewNewItemsHeight.constant = view.frame.width * 0.55
+        collectionViewPopularHeight.constant = view.frame.width * 0.45
+        collectionViewCategoriesHeight.constant = view.frame.width * 1.10
         collcetionViewTopHeight.constant = view.frame.width * 0.15
-        collcetionViewForYouHeight.constant = view.frame.width * 0.20
 
-        // Sale: 3 columns, 2 rows with spacing
-        let saleItemWidth = (view.frame.width - 20) / 3
-        collectionViewSaleHeight.constant = (saleItemWidth * 2) + 5  // 2 rows + spacing
+        // Sale — accounts for 8pt insets + spacing
+        let saleInset: CGFloat = 8
+        let saleSpacing: CGFloat = 8
+        let saleItemWidth =
+            (view.frame.width - (saleInset * 2) - (saleSpacing * 2)) / 3
+        collectionViewSaleHeight.constant =
+            (saleItemWidth * 2) + saleSpacing + (saleInset * 2)
 
-        // ForYou: 2 columns, 3 rows
-        let youSpacing: CGFloat = 5
-        let youItemWidth = (view.frame.width - youSpacing) / 2
+        // For You — accounts for spacing
+        let youSpacing: CGFloat = 8
+        let youInset: CGFloat = 8
+        let youItemWidth = (view.frame.width - (youInset * 2) - youSpacing) / 2
         let youItemHeight = youItemWidth * 1.3
         collcetionViewForYouHeight.constant =
-            (youItemHeight * 3) + (youSpacing * 2)
+            (youItemHeight * 3) + (youSpacing * 2) + (youInset * 2)
+
+        //Categoeis collcetion
+        let catInset: CGFloat = 8
+        let catSpacing: CGFloat = 12
+        let catItemWidth = (view.frame.width - (catInset * 2) - catSpacing) / 2
+        let catItemHeight = catItemWidth * 1.35
+        collectionViewCategoriesHeight.constant =
+            (catItemHeight * 2) + catSpacing + (catInset * 2)
 
     }
+
+    func fixRecentlyLayout() {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 12
+        layout.minimumInteritemSpacing = 12
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 6, left: 8, bottom: 6, right: 8)
+        collectionViewRecenly.collectionViewLayout = layout
+    }
+
+    func fixTopLayout() {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 12
+        layout.minimumInteritemSpacing = 12
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 6, left: 8, bottom: 6, right: 8)
+        CollcetionViewTop.collectionViewLayout = layout
+    }
+
+    func fixNewItemsLayout() {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 12
+        layout.minimumInteritemSpacing = 12
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        collectionViewNewItems.collectionViewLayout = layout
+        collectionViewNewItems.isScrollEnabled = true
+    }
+
+    func fixPopularLayout() {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 12
+        layout.minimumInteritemSpacing = 12
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        collectionViewPopular.collectionViewLayout = layout
+        collectionViewPopular.isScrollEnabled = true
+    }
+
+    func fixSaleLayout() {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 8
+        layout.minimumInteritemSpacing = 8
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        collectionViewSale.collectionViewLayout = layout
+        collectionViewSale.isScrollEnabled = false
+    }
+
+    func fixStoriesLayout() {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 6
+        layout.minimumInteritemSpacing = 8
+        layout.scrollDirection = .horizontal
+        collcetionViewStories.collectionViewLayout = layout
+        collcetionViewStories.isScrollEnabled = true
+    }
+
     //MARK: Method for recently viewed
     func recentlyViewed() {
 
         collectionViewRecenly.delegate = self
         collectionViewRecenly.dataSource = self
+        collectionViewRecenly.clipsToBounds = false
+        collectionViewRecenly.layer.masksToBounds = false
 
         collcetionViewStories.delegate = self
         collcetionViewStories.dataSource = self
+        collcetionViewStories.clipsToBounds = false
+        collcetionViewStories.layer.masksToBounds = false
 
         collectionViewNewItems.delegate = self
         collectionViewNewItems.dataSource = self
+        collectionViewNewItems.clipsToBounds = false
+        collectionViewNewItems.layer.masksToBounds = false
 
         collectionViewPopular.delegate = self
         collectionViewPopular.dataSource = self
+        collectionViewPopular.clipsToBounds = false
+        collectionViewPopular.layer.masksToBounds = false
 
         collectionViewCategories.delegate = self
         collectionViewCategories.dataSource = self
+        collectionViewCategories.clipsToBounds = false
+        collectionViewCategories.layer.masksToBounds = false
 
         collectionViewSale.delegate = self
         collectionViewSale.dataSource = self
+        collectionViewSale.clipsToBounds = false
+        collectionViewSale.layer.masksToBounds = false
 
         CollcetionViewTop.delegate = self
         CollcetionViewTop.dataSource = self
+        CollcetionViewTop.clipsToBounds = false
+        CollcetionViewTop.layer.masksToBounds = false
 
         collcetionViewYou.delegate = self
         collcetionViewYou.dataSource = self
+        collcetionViewYou.clipsToBounds = false
+        collcetionViewYou.layer.masksToBounds = false
+
+        // Fix shadow clipping on circle collections
+        collectionViewRecenly.clipsToBounds = false
+        collectionViewRecenly.layer.masksToBounds = false
+        collectionViewRecenly.clipsToBounds = false
+        collectionViewRecenly.layer.masksToBounds = false
+
+        CollcetionViewTop.clipsToBounds = false
+        CollcetionViewTop.layer.masksToBounds = false
+        CollcetionViewTop.clipsToBounds = false
+        CollcetionViewTop.layer.masksToBounds = false
+        
+        lbl00.layer.cornerRadius = 6
+        lbl36.layer.cornerRadius = 6
+        lbl58.layer.cornerRadius = 6
+        
+    
+        lbl00.layer.masksToBounds = true
+        lbl36.layer.masksToBounds = true
+        lbl58.layer.masksToBounds = true
+    
     }
 
     // MARK: This replaces the broken storyboard layout with a fresh one
@@ -250,17 +380,22 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
 
         // Categories
         if collectionView == collectionViewCategories {
-            let width = collectionView.frame.width / 2 - 10
-            let height = width * 1.2
+            let inset: CGFloat = 8
+            let spacing: CGFloat = 12
+            let totalWidth = collectionView.frame.width - (inset * 2) - spacing
+            let width = totalWidth / 2
+            let height = width * 1.4  
             return CGSize(width: width, height: height)
         }
 
         // Sale
         if collectionView == collectionViewSale {
-            let spacing: CGFloat = 5
-            let totalSpacing = spacing * 2  // space between 3 columns
-            let width = (collectionView.frame.width - totalSpacing) / 3
-            return CGSize(width: width, height: width)  // Square items
+            let inset: CGFloat = 8
+            let spacing: CGFloat = 8
+            let totalWidth =
+                collectionView.frame.width - (inset * 2) - (spacing * 2)
+            let width = totalWidth / 3
+            return CGSize(width: width, height: width)
         }
         //Top Collcetion
         if collectionView == CollcetionViewTop {
@@ -271,7 +406,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
         if collectionView == collcetionViewYou {
             let spacing: CGFloat = 5
             let width = (collectionView.frame.width - spacing) / 2
-            return CGSize(width: width, height: width * 1.3)
+            return CGSize(width: width, height: width * 1.5)
         }
         return CGSize(width: height, height: height)
     }
@@ -303,7 +438,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
         }
         //ColcletionView Sale
         else if collectionView == collectionViewSale {
-            return storiesImages.count
+            return 6
         } else if collectionView == CollcetionViewTop {
             return recenlyImages.count
         } else if collectionView == collcetionViewYou {
@@ -351,6 +486,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
             )
             cell.txtTitle.text = newProducts[indexPath.row].title
             cell.txtPrice.text = newProducts[indexPath.row].price
+            cell.layoutIfNeeded()
+            cell.updateShadow()
             return cell
         }
         //Collcetionview Popular
@@ -365,6 +502,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
             )
             cell.txtTitle.text = populatItems[indexPath.row].title
             cell.txtDesc.text = populatItems[indexPath.row].desc
+            cell.layoutIfNeeded()
             return cell
         }
 
