@@ -467,6 +467,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
             )
             cell.txtTitle.text = populatItems[indexPath.row].title
             cell.txtDesc.text = populatItems[indexPath.row].desc
+            cell.layoutIfNeeded()
             return cell
         }
 
