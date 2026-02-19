@@ -44,6 +44,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var collcetionViewYou: UICollectionView!
 
     @IBOutlet weak var collcetionViewForYouHeight: NSLayoutConstraint!
+    
+    //Label Radius
+    @IBOutlet weak var lbl00:UILabel!
+    @IBOutlet weak var lbl36:UILabel!
+    @IBOutlet weak var lbl58:UILabel!
 
     //Arry of recenlty viewed
     let recenlyImages = [
@@ -301,7 +306,16 @@ class ViewController: UIViewController {
         CollcetionViewTop.layer.masksToBounds = false
         CollcetionViewTop.clipsToBounds = false
         CollcetionViewTop.layer.masksToBounds = false
-
+        
+        lbl00.layer.cornerRadius = 6
+        lbl36.layer.cornerRadius = 6
+        lbl58.layer.cornerRadius = 6
+        
+    
+        lbl00.layer.masksToBounds = true
+        lbl36.layer.masksToBounds = true
+        lbl58.layer.masksToBounds = true
+    
     }
 
     // MARK: This replaces the broken storyboard layout with a fresh one

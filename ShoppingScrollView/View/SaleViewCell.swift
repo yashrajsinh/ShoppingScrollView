@@ -33,7 +33,8 @@ class SaleViewCell: UICollectionViewCell {
         contentView.backgroundColor = .clear
         contentView.layer.cornerRadius = 15
         contentView.layer.masksToBounds = true
-
+        contentView.bringSubviewToFront(lblTwenty)
+        
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 0.10
         self.layer.shadowRadius = 8
