@@ -13,35 +13,56 @@ class CategoriesViewCell: UICollectionViewCell {
     @IBOutlet weak var txtCount: UILabel!
 
     override func awakeFromNib() {
-          super.awakeFromNib()
-          contentView.backgroundColor = .white
-          contentView.layer.cornerRadius = 16
-          contentView.layer.masksToBounds = true
+        super.awakeFromNib()
 
-          self.backgroundColor = .clear
-          self.layer.masksToBounds = false
-          self.layer.shadowColor = UIColor.black.cgColor
-          self.layer.shadowOpacity = 0.10
-          self.layer.shadowRadius = 8
-          self.layer.shadowOffset = CGSize(width: 0, height: 4)
-      }
+        contentView.backgroundColor = .white
+        contentView.layer.cornerRadius = 10
+        contentView.layer.borderWidth = 2
+        contentView.layer.borderColor = UIColor.systemGray5.cgColor
+        contentView.layer.masksToBounds = true
 
-      override func layoutSubviews() {
-          super.layoutSubviews()
-          self.layer.shadowPath = UIBezierPath(
-              roundedRect: self.bounds,
-              cornerRadius: 16
-          ).cgPath
-      }
+        self.backgroundColor = .clear
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.20
+        self.layer.shadowRadius = 10
+        self.layer.shadowOffset = CGSize(width: 0, height: 4)
 
-      func configure(with model: Categories) {
-          txtTitle.text = model.title
-          txtCount.text = "\(model.count)"
-          for (index, imageView) in imageViews.enumerated() {
-              imageView.contentMode = .scaleAspectFill
-              imageView.clipsToBounds = true
-              imageView.layer.cornerRadius = 8
-              imageView.image = index < model.images.count ? UIImage(named: model.images[index]) : nil
-          }
-      }
+        // Style the count label as a grey pill badge
+        txtCount.backgroundColor = UIColor.systemGray6
+        txtCount.layer.cornerRadius = 8
+        txtCount.layer.masksToBounds = true
+        txtCount.textAlignment = .center
+        txtCount.font = UIFont.systemFont(ofSize: 12, weight: .medium)
+        txtCount.textColor = .black
+
+        // Title styling
+        txtTitle.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        txtTitle.textColor = .black
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layer.shadowPath =
+            UIBezierPath(
+                roundedRect: self.bounds,
+                cornerRadius: 16
+            ).cgPath
+    }
+
+    func configure(with model: Categories) {
+        txtTitle.text = model.title
+        txtCount.text = "  \(model.count)  "  // padding inside pill
+
+        for (index, imageView) in imageViews.enumerated() {
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+            imageView.layer.cornerRadius = 8
+            imageView.layer.borderWidth = 2  // white border
+            imageView.layer.borderColor = UIColor.white.cgColor
+            imageView.image =
+                index < model.images.count
+                ? UIImage(named: model.images[index]) : nil
+        }
+    }
 }

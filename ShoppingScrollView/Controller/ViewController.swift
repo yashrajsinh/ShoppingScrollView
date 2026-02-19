@@ -140,7 +140,19 @@ class ViewController: UIViewController {
         fixStoriesLayout()
         fixRecentlyLayout()
         fixTopLayout()
+        fixCategoriesLayout()
 
+    }
+    //MARK Categories viwe
+    func fixCategoriesLayout() {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 12
+        layout.minimumInteritemSpacing = 12
+        layout.scrollDirection = .vertical
+        // Insets give shadow room on all sides
+        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        collectionViewCategories.collectionViewLayout = layout
+        collectionViewCategories.isScrollEnabled = false
     }
 
     //MARK: Set custom heights
@@ -168,6 +180,14 @@ class ViewController: UIViewController {
         let youItemHeight = youItemWidth * 1.3
         collcetionViewForYouHeight.constant =
             (youItemHeight * 3) + (youSpacing * 2) + (youInset * 2)
+
+        //Categoeis collcetion
+        let catInset: CGFloat = 8
+        let catSpacing: CGFloat = 12
+        let catItemWidth = (view.frame.width - (catInset * 2) - catSpacing) / 2
+        let catItemHeight = catItemWidth * 1.2
+        collectionViewCategoriesHeight.constant =
+            (catItemHeight * 2) + catSpacing + (catInset * 2)
 
     }
 
@@ -271,19 +291,17 @@ class ViewController: UIViewController {
         collcetionViewYou.clipsToBounds = false
         collcetionViewYou.layer.masksToBounds = false
 
-
         // Fix shadow clipping on circle collections
         collectionViewRecenly.clipsToBounds = false
         collectionViewRecenly.layer.masksToBounds = false
         collectionViewRecenly.clipsToBounds = false
         collectionViewRecenly.layer.masksToBounds = false
 
+        CollcetionViewTop.clipsToBounds = false
+        CollcetionViewTop.layer.masksToBounds = false
+        CollcetionViewTop.clipsToBounds = false
+        CollcetionViewTop.layer.masksToBounds = false
 
-        CollcetionViewTop.clipsToBounds = false
-        CollcetionViewTop.layer.masksToBounds = false
-        CollcetionViewTop.clipsToBounds = false
-        CollcetionViewTop.layer.masksToBounds = false
-        
     }
 
     // MARK: This replaces the broken storyboard layout with a fresh one
@@ -348,7 +366,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
 
         // Categories
         if collectionView == collectionViewCategories {
-            let width = collectionView.frame.width / 2 - 10
+            let inset: CGFloat = 8
+            let spacing: CGFloat = 12
+            let totalWidth = collectionView.frame.width - (inset * 2) - spacing
+            let width = totalWidth / 2
             let height = width * 1.2
             return CGSize(width: width, height: height)
         }
