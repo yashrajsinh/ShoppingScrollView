@@ -17,15 +17,16 @@ class CategoriesViewCell: UICollectionViewCell {
 
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 10
-        contentView.layer.borderWidth = 2
-        contentView.layer.borderColor = UIColor.systemGray5.cgColor
+      
         contentView.layer.masksToBounds = true
 
         self.backgroundColor = .clear
         self.layer.masksToBounds = false
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOpacity = 0.20
-        self.layer.shadowRadius = 10
+        self.layer.shadowRadius = 12
+        self.layer.borderWidth = 4
+        self.layer.borderColor = UIColor.white.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 4)
 
         // Style the count label as a grey pill badge
@@ -58,7 +59,7 @@ class CategoriesViewCell: UICollectionViewCell {
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
             imageView.layer.cornerRadius = 8
-            imageView.layer.borderWidth = 2  // white border
+            imageView.layer.borderWidth = 3  // white border
             imageView.layer.borderColor = UIColor.white.cgColor
             imageView.image =
                 index < model.images.count

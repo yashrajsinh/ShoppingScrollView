@@ -185,7 +185,7 @@ class ViewController: UIViewController {
         let catInset: CGFloat = 8
         let catSpacing: CGFloat = 12
         let catItemWidth = (view.frame.width - (catInset * 2) - catSpacing) / 2
-        let catItemHeight = catItemWidth * 1.2
+        let catItemHeight = catItemWidth * 1.35
         collectionViewCategoriesHeight.constant =
             (catItemHeight * 2) + catSpacing + (catInset * 2)
 
@@ -370,7 +370,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
             let spacing: CGFloat = 12
             let totalWidth = collectionView.frame.width - (inset * 2) - spacing
             let width = totalWidth / 2
-            let height = width * 1.2
+            let height = width * 1.4  
             return CGSize(width: width, height: height)
         }
 
@@ -392,7 +392,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
         if collectionView == collcetionViewYou {
             let spacing: CGFloat = 5
             let width = (collectionView.frame.width - spacing) / 2
-            return CGSize(width: width, height: width * 1.3)
+            return CGSize(width: width, height: width * 1.5)
         }
         return CGSize(width: height, height: height)
     }
