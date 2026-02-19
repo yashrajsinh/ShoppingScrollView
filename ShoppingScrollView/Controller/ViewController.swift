@@ -44,11 +44,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var collcetionViewYou: UICollectionView!
 
     @IBOutlet weak var collcetionViewForYouHeight: NSLayoutConstraint!
-    
+
     //Label Radius
-    @IBOutlet weak var lbl00:UILabel!
-    @IBOutlet weak var lbl36:UILabel!
-    @IBOutlet weak var lbl58:UILabel!
+    @IBOutlet weak var lbl00: UILabel!
+    @IBOutlet weak var lbl36: UILabel!
+    @IBOutlet weak var lbl58: UILabel!
 
     //Arry of recenlty viewed
     let recenlyImages = [
@@ -179,12 +179,13 @@ class ViewController: UIViewController {
             (saleItemWidth * 2) + saleSpacing + (saleInset * 2)
 
         // For You — accounts for spacing
-        let youSpacing: CGFloat = 8
         let youInset: CGFloat = 8
+        let youSpacing: CGFloat = 8
         let youItemWidth = (view.frame.width - (youInset * 2) - youSpacing) / 2
-        let youItemHeight = youItemWidth * 1.3
+        let youItemHeight = youItemWidth * 1.5
+        // 2 rows (your data has 4 items)
         collcetionViewForYouHeight.constant =
-            (youItemHeight * 3) + (youSpacing * 2) + (youInset * 2)
+            (youItemHeight * 2) + youSpacing + (youInset * 2)
 
         //Categoeis collcetion
         let catInset: CGFloat = 8
@@ -193,6 +194,8 @@ class ViewController: UIViewController {
         let catItemHeight = catItemWidth * 1.35
         collectionViewCategoriesHeight.constant =
             (catItemHeight * 2) + catSpacing + (catInset * 2)
+
+        //For you colletion
 
     }
 
@@ -306,26 +309,26 @@ class ViewController: UIViewController {
         CollcetionViewTop.layer.masksToBounds = false
         CollcetionViewTop.clipsToBounds = false
         CollcetionViewTop.layer.masksToBounds = false
-        
+
         lbl00.layer.cornerRadius = 6
         lbl36.layer.cornerRadius = 6
         lbl58.layer.cornerRadius = 6
-        
-    
+
         lbl00.layer.masksToBounds = true
         lbl36.layer.masksToBounds = true
         lbl58.layer.masksToBounds = true
-    
+
     }
 
     // MARK: This replaces the broken storyboard layout with a fresh one
     func fixForYouLayout() {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 5
-        layout.minimumInteritemSpacing = 5
+        layout.minimumLineSpacing = 12
+        layout.minimumInteritemSpacing = 8
         layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         collcetionViewYou.collectionViewLayout = layout
-        collcetionViewYou.isScrollEnabled = false  // let the scroll view handle scrolling
+        collcetionViewYou.isScrollEnabled = false
     }
 
     //MARK: Add padding to view
@@ -384,7 +387,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
             let spacing: CGFloat = 12
             let totalWidth = collectionView.frame.width - (inset * 2) - spacing
             let width = totalWidth / 2
-            let height = width * 1.4  
+            let height = width * 1.4
             return CGSize(width: width, height: height)
         }
 
@@ -404,8 +407,10 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
 
         //For your
         if collectionView == collcetionViewYou {
-            let spacing: CGFloat = 5
-            let width = (collectionView.frame.width - spacing) / 2
+            let inset: CGFloat = 8
+            let spacing: CGFloat = 8
+            let totalWidth = collectionView.frame.width - (inset * 2) - spacing
+            let width = totalWidth / 2
             return CGSize(width: width, height: width * 1.5)
         }
         return CGSize(width: height, height: height)

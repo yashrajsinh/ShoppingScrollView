@@ -18,34 +18,39 @@ class ForYouViewCell: UICollectionViewCell {
     }
 
     private func setupCard() {
-        // White card
-        contentView.backgroundColor = .white
-        contentView.layer.cornerRadius = 14
-        contentView.layer.cornerCurve = .continuous
-        contentView.layer.masksToBounds = true
+        // No card — transparent background
+        self.backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        self.layer.masksToBounds = false
+        contentView.layer.masksToBounds = false
 
-        // Image
+        // Image styling — rounded, no border
         imgModel.contentMode = .scaleAspectFill
         imgModel.clipsToBounds = true
-        imgModel.layer.cornerRadius = 10
+        imgModel.layer.cornerRadius = 12
         imgModel.layer.cornerCurve = .continuous
-        imgModel.layer.borderWidth = 3
-        imgModel.layer.borderColor = UIColor.white.cgColor
 
-        // Shadow on self
-        self.backgroundColor = .clear
-        self.layer.masksToBounds = false
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = 0.18
-        self.layer.shadowRadius = 10
-        self.layer.shadowOffset = CGSize(width: 0, height: 6)
+        // Shadow directly on imgModel's layer won't work since clipsToBounds = true
+        // So we add shadow on a wrapper — use contentView instead
+        contentView.layer.shadowColor = UIColor.black.cgColor
+        contentView.layer.shadowOpacity = 0.18
+        contentView.layer.shadowRadius = 8
+        contentView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        contentView.layer.masksToBounds = false
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        updateShadow()
     }
 
     func updateShadow() {
-        self.layer.shadowPath =
+        // Shadow path matches only the image frame, not the labels below
+        contentView.layer.shadowPath =
             UIBezierPath(
-                roundedRect: contentView.frame,
-                cornerRadius: 14
+                roundedRect: imgModel.frame,
+                cornerRadius: 12
             ).cgPath
     }
 }
