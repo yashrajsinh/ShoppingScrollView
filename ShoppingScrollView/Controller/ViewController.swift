@@ -549,6 +549,8 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource,
             )
             cell.txtTitle.text = newProducts[indexPath.row].title
             cell.txtPrice.text = newProducts[indexPath.row].price
+            cell.updateShadow()
+            cell.layoutIfNeeded()
             return cell
         }
         return cell

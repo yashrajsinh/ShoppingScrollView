@@ -18,29 +18,34 @@ class ForYouViewCell: UICollectionViewCell {
     }
 
     private func setupCard() {
-        imgModel.contentMode = .scaleAspectFill
-        imgModel.clipsToBounds = true
-        imgModel.layer.cornerRadius = 16
-
-        // WHITE card
+        // White card
         contentView.backgroundColor = .white
-        contentView.layer.cornerRadius = 16
+        contentView.layer.cornerRadius = 14
+        contentView.layer.cornerCurve = .continuous
         contentView.layer.masksToBounds = true
 
+        // Image
+        imgModel.contentMode = .scaleAspectFill
+        imgModel.clipsToBounds = true
+        imgModel.layer.cornerRadius = 10
+        imgModel.layer.cornerCurve = .continuous
+        imgModel.layer.borderWidth = 3
+        imgModel.layer.borderColor = UIColor.white.cgColor
+
+        // Shadow on self
         self.backgroundColor = .clear
         self.layer.masksToBounds = false
         self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = 0.10
+        self.layer.shadowOpacity = 0.18
         self.layer.shadowRadius = 10
-        self.layer.shadowOffset = CGSize(width: 0, height: 4)
+        self.layer.shadowOffset = CGSize(width: 0, height: 6)
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
+    func updateShadow() {
         self.layer.shadowPath =
             UIBezierPath(
-                roundedRect: self.bounds,
-                cornerRadius: 16
+                roundedRect: contentView.frame,
+                cornerRadius: 14
             ).cgPath
     }
 }
