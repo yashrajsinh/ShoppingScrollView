@@ -18,36 +18,37 @@ class ForYouViewCell: UICollectionViewCell {
     }
 
     private func setupCard() {
-        // No card — transparent background
+        // Cell itself carries the shadow
         self.backgroundColor = .clear
-        contentView.backgroundColor = .clear
         self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.35
+        self.layer.shadowRadius = 10
+        self.layer.shadowOffset = CGSize(width: 0, height: 6)
+
+        // contentView must NOT clip
+        contentView.backgroundColor = .clear
         contentView.layer.masksToBounds = false
 
-        // Image styling — rounded, no border
+        // Image
         imgModel.contentMode = .scaleAspectFill
         imgModel.clipsToBounds = true
         imgModel.layer.cornerRadius = 12
         imgModel.layer.cornerCurve = .continuous
 
-        // Shadow directly on imgModel's layer won't work since clipsToBounds = true
-        // So we add shadow on a wrapper — use contentView instead
-        contentView.layer.shadowColor = UIColor.black.cgColor
-        contentView.layer.shadowOpacity = 0.18
-        contentView.layer.shadowRadius = 8
-        contentView.layer.shadowOffset = CGSize(width: 0, height: 4)
-        contentView.layer.masksToBounds = false
+        // White border looks great over photos
+        imgModel.layer.borderWidth = 4.0
+        imgModel.layer.borderColor = UIColor.white.cgColor
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
         updateShadow()
     }
 
     func updateShadow() {
-        // Shadow path matches only the image frame, not the labels below
-        contentView.layer.shadowPath =
+        // Shadow on self.layer, path matches image frame
+        self.layer.shadowPath =
             UIBezierPath(
                 roundedRect: imgModel.frame,
                 cornerRadius: 12
